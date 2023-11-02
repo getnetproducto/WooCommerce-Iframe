@@ -5,10 +5,10 @@
  * Description: Plugin que conecta la API Iframe de Getnet con WooCommerce.
  * Author: Wanderlust Web Design
  * Author URI: https://wanderlust-webdesign.com/
- * Version: 0.0.1
+ * Version: 0.0.2
  * Text Domain: wc-gateway-getnetIframe
  * Domain Path: /i18n/languages/
- * WC tested up to: 7.9.1
+ * WC tested up to: 8.0.1
  *
  * @package   WC-Gateway-getnetIframe
  * @author    Wanderlust Web Design
@@ -225,7 +225,6 @@ function wanderlustgetnet_Iframe_init_gateway_class()
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-             //CURLOPT_URL => 'https://api.globalgetnet.com/checkout/v1/payments/'.$transaction_id.'/refund', //cancellation
               CURLOPT_URL => 'https://api.globalgetnet.com/checkout/v1/payments/'.$transaction_id.'/cancellation', //cancellation
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => '',
@@ -267,7 +266,7 @@ function wanderlustgetnet_Iframe_init_gateway_class()
             update_post_meta($order_id, 'notification', $notification_url);
             $dni = get_post_meta($order_id, 'DNI', true);
             if(empty($dni)){
-              $dni = '31313131';
+              $dni = '31313131'; //SOLICITADO POR GETNET
             }
                        
             $total = $order->get_total();
@@ -278,9 +277,9 @@ function wanderlustgetnet_Iframe_init_gateway_class()
               $total = number_format($total, 2, '', '');
             }
 			
-			 $items = $order->get_items();
-          $productos = array();
-          foreach( $items as $item ) {    	
+            $items = $order->get_items();
+            $productos = array();
+            foreach( $items as $item ) {    	
 			  
 			   
  			if ( $item['product_id'] > 0 ) {
@@ -360,10 +359,10 @@ function wanderlustgetnet_Iframe_init_gateway_class()
                 "checked_email" => true,
                 "billing_address" => array(
                   "street" => $order->get_billing_address_1(),
-                  "number" => '-',
+                  "number" => '1', //SOLICITADO POR GETNET
                   "city" => $order->get_billing_city(),
                   "state" => $order->get_billing_state(),
-                  "country" => "AR",
+                  "country" => "AR", //SOLICITADO POR GETNET
                   "postal_code" => $order->get_billing_postcode()
                  ),
                ) ,
@@ -435,7 +434,7 @@ function wanderlustgetnet_Iframe_init_gateway_class()
           loader.init(config);
           
           const iframeSection = document.getElementById("iframe-section");
-          const iframe = document.querySelector("iframe");
+          const iframe = document.querySelector('iframe[id="digital-checkout-iframe"]');
           iframeSection.appendChild(iframe);
         
      
@@ -576,6 +575,3 @@ function wanderlustgetnet_Iframe_init_gateway_class()
       
     }
 }
-
- 
-
