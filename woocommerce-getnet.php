@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Wanderlust - Getnet Iframe by Santander
+ * Plugin Name: Getnet Iframe by Santander
  * Plugin URI: https://wanderlust-webdesign.com/
  * Description: Plugin que conecta la API Iframe de Getnet con WooCommerce.
- * Author: Wanderlust Web Design
+ * Author: Wanderlust Codes
  * Author URI: https://wanderlust-webdesign.com/
  * Version: 0.0.2
  * Text Domain: wc-gateway-getnetIframe
@@ -11,8 +11,8 @@
  * WC tested up to: 8.0.1
  *
  * @package   WC-Gateway-getnetIframe
- * @author    Wanderlust Web Design
- * @copyright Copyright (c) 2010-2023, Wanderlust Web Design
+ * @author    Wanderlust Codes
+ * @copyright Copyright (c) 2010-2023, Wanderlust Codes
  *
  */
  
